@@ -158,10 +158,10 @@ body {
 }
 
 .playlist {
-    width: 80%; /* Adjusted to ensure better interaction space */
+    width: 100%; /* Adjusted to ensure better interaction space */
     background: #222;
     border: 2px solid #555;
-    padding: 25px;
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
     text-align: center;
