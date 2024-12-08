@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () { 
     const audioPlayer = document.getElementById('audio-player');
     const trackListItems = document.querySelectorAll('#track-list li');
-    const currentTrackTitle = document.getElementById('current-track-title'); // Reference to UI showing the current playing title
+    const currentTrackTitle = document.getElementById('current-track-title'); // Reference to the "Currently Playing" section
     let currentTrackIndex = 0;
 
     // Function to load a track and play it
@@ -12,32 +12,32 @@ document.addEventListener('DOMContentLoaded', function () {
         updateCurrentlyPlayingUI(index);
     }
 
-    // Function to update the UI with the currently playing track
+    // Function to update the UI to show the currently playing track
     function updateCurrentlyPlayingUI(index) {
-        // Reset other tracks' styles
+        // Highlight all playlist items to reset their styles
         trackListItems.forEach((item) => {
-            item.style.color = ''; // Clear style from all items
+            item.style.color = ''; // Reset style for all
         });
 
-        // Highlight the currently playing track
+        // Highlight the currently playing track in the playlist
         trackListItems[index].style.color = 'blue';
-        currentTrackTitle.textContent = trackListItems[index].innerText; // Display the current track title
+        currentTrackTitle.textContent = trackListItems[index].innerText; // Update the UI text with the track's title
     }
 
-    // Play the next track automatically after the current one ends
+    // Automatically play the next track when the current one ends
     audioPlayer.addEventListener('ended', function () {
-        currentTrackIndex = (currentTrackIndex + 1) % trackListItems.length; // Loop back to the first track if at the end
+        currentTrackIndex = (currentTrackIndex + 1) % trackListItems.length; // Loop back to the start after the last song
         loadTrack(currentTrackIndex);
     });
 
-    // Handle clicks on the playlist for manual track selection
+    // Allow user to click on tracks to select and play them manually
     trackListItems.forEach((item, index) => {
         item.addEventListener('click', function () {
-            currentTrackIndex = index;
+            currentTrackIndex = index; // Set index to the clicked track
             loadTrack(currentTrackIndex);
         });
     });
 
-    // Initialize the playlist by loading and playing the first track
+    // Initialize by loading the first track
     loadTrack(currentTrackIndex);
 });
