@@ -29,7 +29,7 @@
 
     <section class="contact">
         <div class="container">
-            <h2>Contact Form</h2>
+            <h2>send us message </h2>
             <form id="contactForm">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" required>
@@ -64,7 +64,7 @@
 
             // Use EmailJS to send the email
             emailjs.send("service_4l5ahg5", "template_120ws8s", {
-                name: formData.get('from_name'),
+                name: formData.get('name'),
                 email: formData.get('email'),
                 message: formData.get('message')
             }).then(response => {
