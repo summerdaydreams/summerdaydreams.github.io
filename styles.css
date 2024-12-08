@@ -111,6 +111,42 @@ body {
     text-decoration: underline;
 }
 
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Header */
+.header {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+}
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+.nav-menu a {
+    color: #fff;
+    text-decoration: none;
+}
+.nav-menu a:hover {
+    text-decoration: underline;
+}
+
 /* Music Playlist Section */
 
 /* Music Playlist General Styling */
@@ -122,17 +158,17 @@ body {
 }
 
 .playlist {
-    width: 60%;
+    width: 80%; /* Adjusted to ensure better interaction space */
     background: #222;
     border: 2px solid #555;
-    padding: 20px;
+    padding: 25px;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
     text-align: center;
     color: #fff;
 }
 
-/* Currently Playing */
+/* Currently Playing Section */
 .currently-playing {
     margin-bottom: 20px;
     color: #00ffff;
@@ -164,9 +200,12 @@ body {
     background-color: #555;
 }
 
-/* Audio Player */
+/* Audio Player - Fix progress bar visibility */
 audio {
     width: 100%;
     margin: 10px 0;
     border-radius: 5px;
+    /* Ensures proper display of the audio player's controls including the progress bar */
+    appearance: auto; 
 }
+
