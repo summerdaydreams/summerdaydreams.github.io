@@ -6,6 +6,129 @@ body {
     line-height: 1.6;
 }
 
+/* Header */
+.header {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+}
+
+.nav-menu a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-menu a:hover {
+    text-decoration: underline;
+}
+
+/* Hero Section */
+.hero {
+    background: #f4f4f4;
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+}
+
+/* Blog Posts Section */
+.blog-posts {
+    padding: 2rem 1rem;
+}
+
+.blog-posts h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.post {
+    background: #fff;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.post img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.post h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.post p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.post .btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    background: #007BFF;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.post .btn:hover {
+    background: #0056b3;
+}
+
+/* Footer */
+.footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.footer .social-links a {
+    color: #fff;
+    margin: 0 0.5rem;
+    text-decoration: none;
+}
+
+.footer .social-links a:hover {
+    text-decoration: underline;
+}
+
 /* Music Playlist Section */
 
 /* Music Playlist General Styling */
@@ -17,8 +140,8 @@ body {
 }
 
 .playlist {
-    width: 90%; /* Set the box to use almost the entire width */
-    height: 600px; /* Adjusted the height to make it double the size visually */
+    width: 90%;
+    height: 600px;
     background: #222;
     border: 2px solid #555;
     padding: 40px;
@@ -45,8 +168,8 @@ body {
     list-style: none;
     margin: 10px 0;
     padding: 0;
-    max-height: 400px; /* Limit scrolling area if too many tracks exist */
-    overflow-y: auto; /* Enable scrolling if the list exceeds max-height */
+    max-height: 400px;
+    overflow-y: auto;
 }
 
 #track-list li {
@@ -67,5 +190,24 @@ audio {
     width: 100%;
     margin: 20px 0;
     border-radius: 5px;
-    appearance: auto; /* Ensures proper browser-native player visibility */
+    appearance: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .post h3 {
+        font-size: 1.2rem;
+    }
+
+    .playlist {
+        height: 500px;
+    }
 }
