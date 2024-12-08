@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () { 
     const audioPlayer = document.getElementById('audio-player');
     const trackListItems = document.querySelectorAll('#track-list li');
-    const currentTrackTitle = document.getElementById('current-track-title'); // Reference to the "Currently Playing" section
+    const currentTrackTitle = document.getElementById('current-track-title'); // UI Reference
     let currentTrackIndex = 0;
 
     // Function to load a track and play it
@@ -9,35 +9,51 @@ document.addEventListener('DOMContentLoaded', function () {
         const trackSource = trackListItems[index].getAttribute('data-src');
         audioPlayer.src = trackSource;
         audioPlayer.play();
-        updateCurrentlyPlayingUI(index);
+        updateCurrentlyPlayingUI(trackListItems[index].innerText); // Sync UI with metadata
     }
 
-    // Function to update the UI to show the currently playing track
-    function updateCurrentlyPlayingUI(index) {
-        // Highlight all playlist items to reset their styles
+    // Function to dynamically sync the UI with the currently playing track
+    function updateCurrentlyPlayingUI(trackTitle) {
         trackListItems.forEach((item) => {
-            item.style.color = ''; // Reset style for all
+            item.style.color = ''; // Reset all list colors
         });
 
-        // Highlight the currently playing track in the playlist
-        trackListItems[index].style.color = 'blue';
-        currentTrackTitle.textContent = trackListItems[index].innerText; // Update the UI text with the track's title
+        // Highlight the currently playing track
+        const currentListItem = Array.from(trackListItems).find(item => 
+            item.getAttribute('data-src') === audioPlayer.src
+        );
+        if (currentListItem) {
+            currentListItem.style.color = 'blue';
+        }
+
+        // Set the currently playing track's title
+        currentTrackTitle.textContent = trackTitle;
     }
 
     // Automatically play the next track when the current one ends
     audioPlayer.addEventListener('ended', function () {
-        currentTrackIndex = (currentTrackIndex + 1) % trackListItems.length; // Loop back to the start after the last song
+        currentTrackIndex = (currentTrackIndex + 1) % trackListItems.length; // Loop playback
         loadTrack(currentTrackIndex);
     });
 
-    // Allow user to click on tracks to select and play them manually
+    // Allow user to select a song by clicking on it
     trackListItems.forEach((item, index) => {
         item.addEventListener('click', function () {
-            currentTrackIndex = index; // Set index to the clicked track
-            loadTrack(currentTrackIndex);
+            currentTrackIndex = index;
+            loadTrack(index);
         });
     });
 
-    // Initialize by loading the first track
+    // Ensure UI reflects the correct track information at the start
     loadTrack(currentTrackIndex);
+
+    // Also dynamically update the audio player title as soon as track changes/loads
+    audioPlayer.addEventListener('play', function () {
+        const playingTrack = Array.from(trackListItems).find(item => 
+            item.getAttribute('data-src') === audioPlayer.src
+        );
+        if (playingTrack) {
+            updateCurrentlyPlayingUI(playingTrack.innerText);
+        }
+    });
 });
