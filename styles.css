@@ -353,3 +353,50 @@ body {
     margin: 0 5px;
     text-decoration: none;
 }
+/* contact style */
+.contact {
+    text-align: center;
+    padding: 40px 20px;
+    background: #f4f4f4;
+}
+
+form {
+    display: inline-block;
+    text-align: left;
+    max-width: 400px;
+    width: 100%;
+}
+
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+#status {
+    margin-top: 20px;
+    font-weight: bold;
+}
