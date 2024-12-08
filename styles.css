@@ -110,3 +110,38 @@ body {
 .footer .social-links a:hover {
     text-decoration: underline;
 }
+
+
+/* Music Playlist Section */
+.music-playlist {
+    padding: 2rem 1rem;
+    text-align: center;
+}
+.music-playlist h2 {
+    margin-bottom: 1.5rem;
+}
+.playlist {
+    background: #f4f4f4;
+    padding: 1rem;
+    border-radius: 5px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+#track-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+}
+#track-list li {
+    padding: 0.5rem;
+    background: #fff;
+    margin-bottom: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#track-list li:hover {
+    background: #007BFF;
+    color: #fff;
+}
