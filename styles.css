@@ -400,3 +400,23 @@ form button:hover {
     margin-top: 20px;
     font-weight: bold;
 }
+
+/* shuffle botton */
+.controls {
+    margin: 10px 0;
+    text-align: center;
+}
+
+#shuffle-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#shuffle-button:hover {
+    background-color: #0056b3;
+}
