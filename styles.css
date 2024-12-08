@@ -203,7 +203,7 @@ body {
 /* Audio Player - Fix progress bar visibility */
 audio {
     width: 100%;
-    margin: 10px 0;
+    margin: 40px 0;
     border-radius: 5px;
     /* Ensures proper display of the audio player's controls including the progress bar */
     appearance: auto; 
