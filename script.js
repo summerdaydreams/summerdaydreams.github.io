@@ -1,39 +1,56 @@
-document.addEventListener('DOMContentLoaded', function () { 
+document.addEventListener('DOMContentLoaded', function () {
     const audioPlayer = document.getElementById('audio-player');
     const trackListItems = document.querySelectorAll('#track-list li');
-    const currentTrackTitle = document.getElementById('current-track-title'); // UI Reference
+    const shuffleButton = document.getElementById('shuffle-button');
+    const currentTrackTitle = document.getElementById('current-track-title');
     let currentTrackIndex = 0;
+    let isShuffleOn = false; // Tracks shuffle mode
 
     // Function to load a track and play it
     function loadTrack(index) {
         const trackSource = trackListItems[index].getAttribute('data-src');
         audioPlayer.src = trackSource;
         audioPlayer.play();
-        updateCurrentlyPlayingUI(trackListItems[index].innerText); // Sync UI with metadata
+        updateCurrentlyPlayingUI(trackListItems[index].innerText);
     }
 
     // Function to dynamically sync the UI with the currently playing track
     function updateCurrentlyPlayingUI(trackTitle) {
         trackListItems.forEach((item) => {
-            item.style.color = ''; // Reset all list colors
+            item.style.color = '';
         });
 
-        // Highlight the currently playing track
-        const currentListItem = Array.from(trackListItems).find(item => 
+        const currentListItem = Array.from(trackListItems).find(item =>
             item.getAttribute('data-src') === audioPlayer.src
         );
         if (currentListItem) {
             currentListItem.style.color = 'blue';
         }
 
-        // Set the currently playing track's title
         currentTrackTitle.textContent = trackTitle;
     }
 
-    // Automatically play the next track when the current one ends
-    audioPlayer.addEventListener('ended', function () {
-        currentTrackIndex = (currentTrackIndex + 1) % trackListItems.length; // Loop playback
+    // Shuffle the playlist by randomly picking a track
+    function shuffleTrack() {
+        const randomIndex = Math.floor(Math.random() * trackListItems.length);
+        currentTrackIndex = randomIndex;
         loadTrack(currentTrackIndex);
+    }
+
+    // Toggle shuffle mode when the shuffle button is clicked
+    shuffleButton.addEventListener('click', function () {
+        isShuffleOn = !isShuffleOn;
+        shuffleButton.textContent = isShuffleOn ? 'Shuffle On' : 'Shuffle Off';
+    });
+
+    // Automatically play the next track, respecting shuffle mode
+    audioPlayer.addEventListener('ended', function () {
+        if (isShuffleOn) {
+            shuffleTrack();
+        } else {
+            currentTrackIndex = (currentTrackIndex + 1) % trackListItems.length;
+            loadTrack(currentTrackIndex);
+        }
     });
 
     // Allow user to select a song by clicking on it
@@ -46,14 +63,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Ensure UI reflects the correct track information at the start
     loadTrack(currentTrackIndex);
-
-    // Also dynamically update the audio player title as soon as track changes/loads
-    audioPlayer.addEventListener('play', function () {
-        const playingTrack = Array.from(trackListItems).find(item => 
-            item.getAttribute('data-src') === audioPlayer.src
-        );
-        if (playingTrack) {
-            updateCurrentlyPlayingUI(playingTrack.innerText);
-        }
-    });
 });
